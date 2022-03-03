@@ -1,0 +1,39 @@
+
+<section class="home-wrapper">
+  <div class="container">
+    <ul class="services-wrapper">
+       {{#each categories}}
+            <li>
+              <a href='{{url}}'>
+                <img src="http://p5.zdassets.com/hc/theme_assets/298094/200004613/{{id}}.png" style="width:60%;">
+              <p>{{name}}</p>
+              </a>
+            </li>
+    
+        {{/each}}
+      </ul>
+  </div>
+  </section>
+  
+<section class="wrapper-home" style="margin-top:20px;">
+  <div class="container">
+    <div class="category-tree">
+      <h3 class="articles-title"><span class="promoted-head">Últimos posts</span></h3>
+      <!-- Zendesk's articles Component display promoted articles -->
+      {{#if promoted_articles}}
+       <section class="promoted-articles">
+          <h3>{{t 'promoted_articles'}}</h3>
+          <ul>
+             {{#each promoted_articles}}
+             <li style="list-style:none;">
+                <a href="{{url}}">{{title}}</a>
+             </li>
+             {{/each}}
+          </ul>
+       </section>
+       {{/if}}
+    </div>
+  </div>
+</section>
+
+

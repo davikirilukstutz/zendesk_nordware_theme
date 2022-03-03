@@ -1,0 +1,38 @@
+
+  <section class="category-wrapper">
+   <div class="container">
+      <div class="row">
+         <div class="category-tree ">
+            <!-- Zendesk's component to show breadcrumbs -->
+            {{breadcrumbs}}
+         </div>
+          <div class="category-tree fancy title" align="center">
+       <h1><span>{{section.name}}</span></h1>
+        <p> {{section.description}}</p
+          ><hr>
+        </div>
+         <!-- Zendesk's component to show the Category's Title -->
+
+            <!-- Zendesk's component to show/display currently view category's all sections with their articles -->
+              
+        <div class="section-list" align="center">
+        {{#if section.articles}}
+               <ul >
+                  {{#each section.articles}}
+                  <li {{#if promoted}} class="article-promoted secao" {{/if}}>
+                  
+                  <a  href="{{url}}">{{title}}</a>
+                  </li>
+                  {{/each}}
+               </ul>
+               {{else}}
+               <i class="section-empty">
+               <a href="{{section.url}}">{{t 'empty'}}</a>
+               </i>
+               {{/if}}
+               {{pagination}}
+        </div>
+           </div>
+    </div>
+        </section>
+ 

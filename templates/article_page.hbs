@@ -1,0 +1,209 @@
+
+<section class="article-wrapper">
+   <div class="container">
+      <div class="row">
+         <div class="category-tree ">
+   <!-- Zendesk's component to show breadcrumbs -->
+    <nav class="sub-nav">
+   {{breadcrumbs}}
+   </nav>
+    
+
+</div>
+     </div>
+  </div>
+</section>
+  
+<section class="article-wrapper">
+   <div class="container">
+      <div class="row">
+         <div class="category-tree ">
+ <div class="article-container" id="article-container">
+    
+      <section class="article-sidebar" >
+      <section class="section-articles">
+      
+        <ul>
+            <li><h3 class="sidenav-title">{{t 'articles_in_section'}}</h3></li>
+          {{#each section.articles}}
+            <li>
+              <a href="{{url}}" class="sidenav-item {{#is id ../article.id}}current-article{{/is}}">{{title}}</a>
+            </li>
+          {{/each}}
+        </ul>
+        {{#if section.more_articles}}
+          <a href="{{section.url}}" class="article-sidebar-item">{{t 'see_more'}}</a>
+        {{/if}}
+      </section>
+        
+      
+      
+        <ul>
+  
+        
+          <li>{{related_articles}}</li>
+          </ul>
+      </section>
+   
+
+  
+     
+     
+         <!-- Zendesk's component to show the article title (Article's name) -->
+       <article class="article">
+      <header class="article-header">
+                <div class="article-author">
+          <div class="avatar article-avatar">
+            {{#if article.author.agent}}
+              <span class="icon-agent"></span>
+            {{/if}}
+            <img src="{{article.author.avatar_url}}" alt="Avatar" class="user-avatar"/>
+          </div>
+          <div class="article-meta">
+            {{#link 'user_profile' id=article.author.id}}
+              {{article.author.name}}
+            {{/link}}
+
+            <div class="article-updated meta-data">{{t 'updated'}} {{date article.updated_at timeago=true}}</div>
+          </div>
+            
+        </div>
+        <div style="float:left; width:100%;" >
+        <h1 style="margin-bottom:20px; display:inline-block; margin-right:30px;" title="{{article.title}}" class="article-title">
+          {{article.title}}
+          {{#if article.internal}}
+            <span class="icon-lock" title="{{t 'internal'}}"></span>
+          {{/if}}
+         
+        </h1>
+          <span style="display:inline-block;"> {{subscribe}}</span>
+        </div>
+
+
+        
+      </header>
+
+      <section class="article-info">
+        <div class="article-content">
+          <div class="article-body">{{article.body}}</div>
+
+          <div class="article-attachments">
+            <ul class="attachments">
+              {{#each attachments}}
+                <li class="attachment-item">
+                  <a href="{{url}}" target="_blank">{{name}}</a>
+                  <div class="attachment-meta meta-group">
+                    <span class="attachment-meta-item meta-data">{{size}}</span>
+                    <a href="{{url}}" target="_blank" class="attachment-meta-item meta-data">Download</a>
+                  </div>
+                </li>
+              {{/each}}
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <footer>
+        <div class="article-footer">
+          <div align="center" class="article-share">{{share}}</div>
+          {{#if comments}}
+            <a href="#article-comments" class="article-comment-count">
+              <span class="icon-comments"></span>
+              {{article.comment_count}}
+            </a>
+          {{/if}}
+        </div>
+        {{#with article}}
+         <div class="article-votes">
+            <span class="article-votes-question">Esse artigo foi útil?</span>
+            <div class="article-votes-controls" role="radiogroup">
+              <a role="radio" rel="nofollow" class="button article-vote article-vote-up" title="Sim" aria-selected="false" href="#"></a>
+              <a role="radio" rel="nofollow" class="button article-vote article-vote-down" title="Não" aria-selected="false" href="#"></a>
+            </div>
+            <small class="article-votes-count">
+              <span class="article-vote-label">Usuários que acharam isso útil: 0 de 0</span>
+            </small>
+          </div>
+        {{/with}}
+
+        <div class="article-more-questions">
+          {{request_callout}}
+        </div>
+
+      </footer>
+
+        <div class="article-comments" id="article-comments">
+  <section class="article-comments users-comment">
+            <h2 class="comentarios">{{t 'comments'}} <i class="fa fa-comments"></i></h2>
+    <div class="subcomentario" style="display:block">
+                <p class="comment-callout numero">{{t 'comments_count' count=article.comment_count}}</p>
+      <p class="comment-callout primeiro">{{comment_callout}}</p>
+    </div>
+    
+    
+            <div class="article-comments-inner">
+               {{#if comments}}
+               <ul class="comment-list">
+                  {{#each comments}}
+                  <li id="{{anchor}}" class="comment">
+                     <div class="comment-avatar {{#if author.agent}} comment-avatar-agent {{/if}}">
+                        <img src="{{author.avatar_url}}" alt="Avatar" />
+                     </div>
+                     <div class="comment-container">
+                        <header class="comment-header">
+                           <strong class="comment-author">
+                           {{#if author.url}}
+                           <a href="{{author.url}}" target="_zendesk_lotus">{{author.name}}</a>
+                           {{else}}
+                           {{author.name}}
+                           {{/if}}
+                           </strong>
+                           <span class="comment-published">{{date created_at}}</span>
+                           {{#if pending}}
+                           <span class="comment-pending">{{t 'pending_approval'}}</span>
+                           {{/if}}
+                        </header>
+                        <div class="comment-body markdown">{{body}}</div>
+                        {{#if editor}}
+                        <div class="comment-edited meta">
+                           {{t 'comment_edited' editor_name=editor.name}} {{date edited_at timeago=true}}
+                        </div>
+                        {{/if}}
+                        <footer class="comment-footer">
+                           <span class="comment-actions">
+                           {{#with ticket}}
+                           <a href="{{url}}" target="_zendesk_lotus" class="escalation-badge">
+                           #{{id}}
+                           </a>
+                           {{/with}}
+                           {{actions}}
+                           </span>
+                        </footer>
+                     </div>
+                  </li>
+                  {{/each}}
+               </ul>
+               {{/if}}
+               {{pagination}}
+               {{#form 'comment' class='comment-form'}}
+               <div class="comment-avatar">
+                  {{user_avatar class='user-avatar'}}
+               </div>
+               <div class="comment-container">
+                  {{textarea 'body' rows='4'}}
+                  <div class="comment-form-controls">
+                     {{input type='submit'}}
+                  </div>
+               </div>
+               {{/form}}
+            </div>
+         </section>
+      </div>
+    </article>
+  </div>
+
+
+</div>
+     </div>
+  </div>
+  </section>

@@ -1,0 +1,51 @@
+<header class="header">
+      <div class="header-inner container clearfix">
+        <!-- Zendesk Component  -->
+         <div class="logo">
+    {{#link 'help_center'}}
+      <img src="{{logo_url}}" alt="{{t 'logo'}}">
+    {{/link}}
+  </div>
+        <!-- Navigation menu starts -->
+        <div class="header-right">
+          <nav class="primary-menu menu">
+            <div>
+              <button data-target=".navbar-mind-collapse" data-toggle="collapse" class="navbar-toggle collapsed" type="button">
+              <span class="navigation-button"></span>
+              </button>
+            </div>
+            <div>
+              <ul class="nav navbar-nav" id="drophover">
+              <li class="active"><a href="https://suporte.bringit.com.br/hc/pt-br/requests/new">Deixe sua dúvida aqui!</a></li>
+              </ul>
+            </div>
+          </nav>
+          <!-- Navigation menu starts -->
+          <!-- SignIn button for desktop menu starts -->                
+            <nav class="user-nav sign-in hidden-xs">
+            <a data-sso-action="signin" href="#"> {{user_info}}</a>
+          </nav>
+        </div>
+        <!-- SignIn button for desktop menu ends -->   
+      </div>
+    </header>
+      <main role="main" class="main main-index">
+          <section class="search-form">
+            <div class="wrapper-mains">
+              <h1>Prontos para te ajudar!</h1>
+                     
+
+      
+                {{search submit=false instant=true class='search search-full' placeholder='Pesquise aqui soluções para seu notebook'}}
+</div>
+      </section></main>
+
+
+<!--<form role="search" class="search search-full" data-search="" data-instant="true" autocomplete="off" action="/hc/pt-br/search?preview%5Btheme_id%5D=201958363&amp;preview_as_role=manager&amp;use_theme_settings=false" accept-charset="UTF-8" method="get">
+  <input name="utf8" type="hidden" value="✓">
+  <input type="hidden" name="preview[theme_id]" id="preview_theme_id" value="201958363">
+  <input type="hidden" name="preview_as_role" id="preview_as_role" value="manager">
+  <input type="search" name="query" id="query" placeholder="Pesquisa" autocomplete="off" aria-label="Pesquisa">
+
+
+</form>-->

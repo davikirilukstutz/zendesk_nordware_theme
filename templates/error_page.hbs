@@ -1,0 +1,17 @@
+<div class="error-page">
+  {{#is error 'unauthorized'}}
+    <h2>{{link 'sign_in'}}</h2>
+  {{/is}}
+
+  {{#is error 'forbidden'}}
+    <h2>{{t 'not_authorized'}}</h2>
+  {{/is}}
+
+  {{#is error 'not_found'}}
+    <h2>Essa página não está disponível</h2>
+    <p>{{t 'mistyped_address_or_moved_page'}}</p>
+  {{/is}}
+  {{#link 'help_center'}}
+    {{t 'back_to_homepage'}}
+  {{/link}}
+</div>
